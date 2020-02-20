@@ -63,7 +63,6 @@ public class User {
         isLocked = locked;
     }
 
-
     public Set<Role> getRoles() {
         return roles;
     }
@@ -71,4 +70,10 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+    public void addRole(Role role){
+        roles.add(role);
+        role.getUsers().add(this);
+    }
+
 }

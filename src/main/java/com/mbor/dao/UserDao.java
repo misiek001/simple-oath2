@@ -20,7 +20,7 @@ public class UserDao extends RawDao<User> implements IUserDao{
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
             CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(clazz);
             Root<User> root = criteriaQuery.from(clazz);
-            criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("employee").get("userName"), userName));
+            criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("userName"), userName));
             TypedQuery<User> allQuery = entityManager.createQuery(criteriaQuery);
             return  Optional.ofNullable(allQuery.getSingleResult());
     }

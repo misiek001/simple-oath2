@@ -11,13 +11,13 @@ import java.util.Set;
 public class Privilege {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NaturalId
     private String name;
 
-    @ManyToMany(mappedBy = "privileges")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "privileges")
     private Set<Role> roles = new HashSet<>();
 
     public Long getId() {
@@ -42,6 +42,11 @@ public class Privilege {
 
     public void setRoles(final Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public void addRole(Role role){
+        roles.add(role);
+        role.getPrivileges().add(this);
     }
 
     @Override

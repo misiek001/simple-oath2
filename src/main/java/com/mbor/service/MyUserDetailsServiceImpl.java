@@ -7,34 +7,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+@Transactional
+public class MyUserDetailsServiceImpl implements MyUserDetailsService {
 
     private final IUserDao userDao;
 
     @Autowired
-    public UserDetailsServiceImpl(IUserDao userDao) {
+    public MyUserDetailsServiceImpl(IUserDao userDao) {
         this.userDao = userDao;
     }
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         Optional<User> result = userDao.findByUsername(s);
-        if(result.isPresent()){
+        if (result.isPresent()) {
             User user = result.get();
             return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(), getAuthorities(user.getRoles()));
         } else {
             throw new UsernameNotFoundException("User Not Found");
         }
-
     }
 
     public final Set<? extends GrantedAuthority> getAuthorities(final Set<Role> roles) {
@@ -43,5 +43,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                         .stream())
                 .map(p -> new SimpleGrantedAuthority(p.getName()))
                 .collect(Collectors.toSet());
+    }
+
+    @Override
+    public User save(User user) {
+        return userDao.save(user).orElseThrow(RuntimeException::new);
+    }
+
+    @Override
+    public User find(Long id) {
+        return userDao.find(id).orElseThrow(RuntimeException::new);
     }
 }

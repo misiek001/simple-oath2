@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class PostService extends RawService<Post> implements IPostService {
+public class PostService  implements IPostService {
 
     private  final PostDao postDao;
 

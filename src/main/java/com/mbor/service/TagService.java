@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class TagService extends RawService<Tag> implements  ITagService{
+public class TagService implements  ITagService{
 
     private final TagDao tagDao;
 
