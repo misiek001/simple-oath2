@@ -22,6 +22,6 @@ public class TagService extends RawService<Tag> implements  ITagService{
 
     @Override
     public Tag find(Long id) {
-        return tagDao.find(id);
+        return tagDao.find(id).get();
     }
 }

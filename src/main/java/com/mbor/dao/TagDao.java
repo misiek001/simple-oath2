@@ -6,8 +6,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class TagDao extends RawDao<Tag> {
 
-    public Tag find(Long id){
-        return  entityManager.find(Tag.class, id);
+    public TagDao() {
+        this.clazz = Tag.class;
     }
-
 }

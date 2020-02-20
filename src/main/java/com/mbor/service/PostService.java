@@ -28,6 +28,6 @@ public class PostService extends RawService<Post> implements IPostService {
 
     @Override
     public Post find(Long id) {
-        return postDao.find(id);
+        return postDao.find(id).get();
     }
 }

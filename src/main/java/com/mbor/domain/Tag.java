@@ -19,7 +19,7 @@ public class Tag {
     @NaturalId
     private String name;
 
-    @ManyToMany(mappedBy = "tags")
+    @ManyToMany(mappedBy = "tags", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @Fetch(FetchMode.JOIN)
     private Set<Post> posts = new HashSet<>();
 
@@ -29,7 +29,6 @@ public class Tag {
         this.name = name;
     }
 
-    //Getters and setters ommitted for brevity
 
     public Long getId() {
         return id;

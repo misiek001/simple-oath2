@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class PostDao extends RawDao<Post> {
 
-    public Post find(Long id){
-        return  entityManager.find(Post.class, id);
+    public PostDao() {
+        this.clazz = Post.class;
     }
 
 }
