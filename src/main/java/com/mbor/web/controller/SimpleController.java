@@ -1,9 +1,7 @@
 package com.mbor.web.controller;
 
-import com.mbor.domain.Post;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
+import com.mbor.service.DataLoader;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,9 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/hello")
 public class SimpleController {
 
+    private final DataLoader dataLoader;
+
+    @Autowired
+    public SimpleController(DataLoader dataLoader) {
+        this.dataLoader = dataLoader;
+    }
+
     @GetMapping
-    public ResponseEntity<Post> helloWorld(){
-        return new ResponseEntity<>(new Post(), HttpStatus.OK);
+    public String helloWorld(){
+        return "Hello World";
     }
 
 }

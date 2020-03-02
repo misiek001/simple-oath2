@@ -26,6 +26,7 @@ public class WebConfiguration implements WebMvcConfigurer {
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
         Map<String, MediaType> mediaTypes = new HashMap<>();
         mediaTypes.put("json", MediaType.APPLICATION_JSON);
+        mediaTypes.put("x-www-form-urlencoded",MediaType.APPLICATION_FORM_URLENCODED);
         configurer.mediaTypes(mediaTypes);
     }
 

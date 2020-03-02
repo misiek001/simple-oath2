@@ -5,15 +5,14 @@ import com.mbor.domain.Tag;
 import com.mbor.domain.security.Privilege;
 import com.mbor.domain.security.Role;
 import com.mbor.domain.security.User;
-import org.hibernate.Transaction;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceUnit;
 
 @Service
 public class DataLoader {
@@ -61,6 +60,7 @@ public class DataLoader {
         User admin = new User();
         admin.setUserName("admin");
         admin.setPassword(passwordEncoder.encode("pass"));
+
 
         Privilege writePrivilege = new Privilege();
         writePrivilege.setName("write");

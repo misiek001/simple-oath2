@@ -1,7 +1,6 @@
 package com.mbor.dao;
 
 import com.mbor.domain.security.Privilege;
-import com.mbor.domain.security.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;

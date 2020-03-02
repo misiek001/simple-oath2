@@ -16,7 +16,7 @@ public class ServletConfiguration extends AbstractAnnotationConfigDispatcherServ
     }
 
     protected String[] getServletMappings() {
-        return new String[]{"/app/*"};
+        return new String[]{"/"};
     }
 
 }
